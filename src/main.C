@@ -4,6 +4,15 @@
 #include "MooseApp.h"
 #include "AppFactory.h"
 
+#include "metaphysicl/dualnumber.h"
+#include "metaphysicl/numberarray.h"
+#include "metaphysicl/dynamicsparsenumberarray.h"
+
+// The 100 here is for how many DoFs there are per element.
+#define AD_MAX_DOFS_PER_ELEM 100
+typedef MetaPhysicL::DualNumber<double, MetaPhysicL::NumberArray<AD_MAX_DOFS_PER_ELEM, double> > ADReal;
+//typedef MetaPhysicL::DualNumber<double, MetaPhysicL::DynamicSparseNumberArray<double, dof_id_type> > ADReal;
+
 // Create a performance log
 PerfLog Moose::perf_log("Meta");
 

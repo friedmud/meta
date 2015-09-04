@@ -29,6 +29,7 @@ APPLICATION_DIR    := $(CURDIR)
 APPLICATION_NAME   := meta
 BUILD_EXEC         := yes
 DEP_APPS           := $(shell $(FRAMEWORK_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
+ADDITIONAL_INCLUDES  := -I $(APPLICATION_DIR)/MetaPhysicL/src/core/include -I $(APPLICATION_DIR)/MetaPhysicL/src/numerics/include -I $(APPLICATION_DIR)/MetaPhysicL/src/utilities/include
 include            $(FRAMEWORK_DIR)/app.mk
 
 ###############################################################################

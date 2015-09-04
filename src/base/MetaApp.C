@@ -2,6 +2,8 @@
 #include "Moose.h"
 #include "AppFactory.h"
 
+#include "TestADKernel.h"
+
 template<>
 InputParameters validParams<MetaApp>()
 {
@@ -9,6 +11,7 @@ InputParameters validParams<MetaApp>()
 
   params.set<bool>("use_legacy_uo_initialization") = false;
   params.set<bool>("use_legacy_uo_aux_computation") = false;
+  params.set<bool>("use_legacy_output_syntax") = false;
   return params;
 }
 
@@ -39,6 +42,7 @@ extern "C" void MetaApp__registerObjects(Factory & factory) { MetaApp::registerO
 void
 MetaApp::registerObjects(Factory & factory)
 {
+  registerKernel(TestADKernel);
 }
 
 // External entry point for dynamic syntax association
