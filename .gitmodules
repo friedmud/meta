@@ -1,0 +1,3 @@
+[submodule "MetaPhysicL"]
+	path = MetaPhysicL
+	url = https://github.com/roystgnr/MetaPhysicL.git

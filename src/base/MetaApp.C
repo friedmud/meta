@@ -1,0 +1,49 @@
+#include "MetaApp.h"
+#include "Moose.h"
+#include "AppFactory.h"
+
+template<>
+InputParameters validParams<MetaApp>()
+{
+  InputParameters params = validParams<MooseApp>();
+
+  params.set<bool>("use_legacy_uo_initialization") = false;
+  params.set<bool>("use_legacy_uo_aux_computation") = false;
+  return params;
+}
+
+MetaApp::MetaApp(InputParameters parameters) :
+    MooseApp(parameters)
+{
+  Moose::registerObjects(_factory);
+  MetaApp::registerObjects(_factory);
+
+  Moose::associateSyntax(_syntax, _action_factory);
+  MetaApp::associateSyntax(_syntax, _action_factory);
+}
+
+MetaApp::~MetaApp()
+{
+}
+
+// External entry point for dynamic application loading
+extern "C" void MetaApp__registerApps() { MetaApp::registerApps(); }
+void
+MetaApp::registerApps()
+{
+  registerApp(MetaApp);
+}
+
+// External entry point for dynamic object registration
+extern "C" void MetaApp__registerObjects(Factory & factory) { MetaApp::registerObjects(factory); }
+void
+MetaApp::registerObjects(Factory & factory)
+{
+}
+
+// External entry point for dynamic syntax association
+extern "C" void MetaApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory) { MetaApp::associateSyntax(syntax, action_factory); }
+void
+MetaApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+{
+}
