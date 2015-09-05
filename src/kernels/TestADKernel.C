@@ -105,7 +105,10 @@ TestADKernel::computeResidual()
       _ad_dofs[i] = current_solution(_dof_indices[i]);
 
       // NOTE!  You have to do this AFTER setting the value!
+
+      // NOTE!!! You MUST switch this to the "insert" implementation when using sparse storage!
       _ad_dofs[i].derivatives()[ad_offset + i] = 1.0;
+      //_ad_dofs[i].derivatives().insert(ad_offset + i) = 1.0;
     }
 
     // Now build up the solution at each quadrature point:

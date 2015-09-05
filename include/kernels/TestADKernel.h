@@ -21,10 +21,15 @@
 // MetaPhysicL
 #include "metaphysicl/dualnumber.h"
 #include "metaphysicl/numberarray.h"
+#include "metaphysicl/dynamicsparsenumberarray.h"
 
 // The 100 here is for how many DoFs there are per element.
 #define AD_MAX_DOFS_PER_ELEM 100
+
 typedef MetaPhysicL::DualNumber<double, MetaPhysicL::NumberArray<AD_MAX_DOFS_PER_ELEM, double> > ADReal;
+
+// NOTE!  if you switch to sparse storage you MUST switch to using "insert" over in the .C file around line 110
+//typedef MetaPhysicL::DualNumber<double, MetaPhysicL::DynamicSparseNumberArray<double, dof_id_type> > ADReal;
 
 namespace libMesh
 {
